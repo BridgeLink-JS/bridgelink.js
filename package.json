@@ -1,0 +1,88 @@
+{
+  "name": "@bridgelink/bridgelink-core",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "github": "https://github.com/vlingo8888/minox",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./index.css": {
+      "import": "./dist/esm/index.css",
+      "require": "./dist/cjs/index.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c",
+    "lint": "eslint --ignore-path .gitignore --fix src",
+    "format": "prettier --write src",
+    "prepare": "husky install",
+    "update-plus-version": "node scripts/update-plus-version.js",
+    "upgrade": "npm run build && npm run update-plus-version && npm publish --access public"
+  },
+  "keywords": [
+    "miniappx"
+  ],
+  "author": "vlingo8888",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.17.9",
+    "classnames": "^2.5.1",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "react": "^16.14.0 || ^17.0.0 || ^18.2.0",
+    "react-toastify": "^10.0.5",
+    "react-use": "^17.5.1",
+    "rollup-plugin-svg": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.18.6",
+    "@rollup/plugin-alias": "^5.0.0",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/lodash-es": "^4.17.10",
+    "@types/qs": "^6.9.9",
+    "@types/react": "^18.2.31",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.39.0",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "postcss": "^8.4.39",
+    "prettier": "^3.3.3",
+    "rollup": "^3.23.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-import-css": "^3.3.5",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-preserve-directives": "^0.2.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "tailwindcss": "^3.4.6",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0 || ^17.0.0 || ^18.2.0",
+    "react-dom": "^16.14.0 || ^17.0.0 || ^18.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0 || >=18.0.0 || >=19.0.0 || >=20.0.0"
+  },
+  "lint-staged": {
+    "*.js": "npm run lint",
+    "*.{js,css,md*}": "npm run format"
+  }
+}

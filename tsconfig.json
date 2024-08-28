@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    // '--jsx' is not set
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "esnext"]
+  },
+  "include": [
+    "src",
+    "components",
+    "hooks",
+    "utils",
+    "global.d.ts"
+  ],
+  "exclude": ["node_modules", "build", "dist", "example", "rollup.config.js"]
+}
