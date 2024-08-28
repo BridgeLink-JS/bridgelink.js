@@ -1,3 +1,4 @@
 import "./index.css";
 import { Demo } from "./components/demo";
-export { Demo };
+import { addBlock, RenderBlock } from "./components/block";
+export { Demo, addBlock, RenderBlock };
