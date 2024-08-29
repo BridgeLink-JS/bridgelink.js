@@ -15,8 +15,15 @@ export const addBlock = (block: Block) => {
   });
 };
 
-export const RenderBlock: FC<RenderBlockProps> = (props) => {
-  const block = blocks.find((block) => block.key === props.blockKey);
-  if (!block) return null;
-  return <>{block.render(props)}</>;
+export const RenderBlock: FC<RenderBlockProps> = ({ blockKey }) => {
+  const block = blocks.find((block) => block.key === blockKey);
+
+  if (!block) {
+    console.warn(`Block with key ${blockKey} not found`);
+    return null;
+  }
+
+  console.log("render block", blockKey, block);
+
+  return <>{block.render ? block.render(blockKey) : null}</>;
 };
