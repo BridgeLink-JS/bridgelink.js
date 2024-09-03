@@ -7,7 +7,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
   const [data, setData] = useState<Item[]>([
     {
       id: "1",
-      blockKey: "block1",
+      blockKey: "block",
       layout: {
         x: 0,
         y: 0,
@@ -17,7 +17,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
     },
     {
       id: "2",
-      blockKey: "block2",
+      blockKey: "text",
       layout: {
         x: 2,
         y: 0,
