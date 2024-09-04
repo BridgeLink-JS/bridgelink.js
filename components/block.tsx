@@ -23,7 +23,5 @@ export const RenderBlock: FC<RenderBlockProps> = ({ blockKey }) => {
     return null;
   }
 
-  console.log("render block", blockKey, block);
-
   return <>{block.render ? block.render(blockKey) : null}</>;
 };
