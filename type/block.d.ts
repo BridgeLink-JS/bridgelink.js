@@ -20,6 +20,10 @@ interface BlockLayout {
   minH?: number;
   maxW?: number;
   maxH?: number;
+  isDraggable?: boolean;
+  isResizable?: boolean;
+  isBounded?: boolean;
+  resizeHandles?: string[];
 }
 
 export interface RenderBlockProps {
