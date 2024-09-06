@@ -1,3 +1,4 @@
+import { classNames } from "classnames";
 export interface Block {
   key: string;
   name: string;
@@ -30,4 +31,6 @@ export interface RenderBlockProps {
   blockKey: string;
 }
 
-export interface BridgeLinkProps {}
+export interface BridgeLinkProps {
+  className: string;
+}

@@ -4,7 +4,7 @@ import GridLayout from "react-grid-layout"; // Ensure correct import
 import { RenderBlock } from "./block"; // Ensure correct import
 import { MdDragHandle } from "react-icons/md";
 
-export const BridgeLink: FC<BridgeLinkProps> = () => {
+export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
   const [data, setData] = useState<Item[]>([
     {
       id: "third-mobile-header-block",
@@ -154,7 +154,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
 
   return (
     <GridLayout
-      className={`layout`}
+      className={`layout ${className}`}
       cols={12}
       rowHeight={30}
       width={1200}
@@ -166,16 +166,18 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       isResizable={false}
       onDragStop={onDragStop}
       isDraggable={true}
-      // draggableHandle=".react-grid-item"
     >
       {data.map((item) => (
         <div key={item.id} className="border border-black relative">
-          {" "}
-          {/* Added div wrapper to satisfy GridLayout's needs */}
-          <div className="drag-handle flex items-center justify-start absolute top-0 right-0 p-2 cursor-pointer">
-            <MdDragHandle size={20} /> {/* Example drag handle icon */}
+          {/* Drag handle centered vertically */}
+          <MdDragHandle
+            size={20}
+            className="absolute left-[-0.75rem] top-1/2 transform -translate-y-1/2 cursor-pointer"
+          />
+          {/* Main content with margin */}
+          <div className="ml-10">
+            <RenderBlock blockKey={item.blockKey} />
           </div>
-          <RenderBlock blockKey={item.blockKey} />
         </div>
       ))}
     </GridLayout>
