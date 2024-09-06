@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Item, BridgeLinkProps } from "../type/block";
 import GridLayout from "react-grid-layout"; // Ensure correct import
 import { RenderBlock } from "./block"; // Ensure correct import
+import { MdDragHandle } from "react-icons/md";
 
 export const BridgeLink: FC<BridgeLinkProps> = () => {
   const [data, setData] = useState<Item[]>([
@@ -21,7 +22,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       blockKey: "banner-carousel-block",
       layout: {
         x: 0,
-        y: 2,
+        y: 4,
         w: 4,
         h: 4,
         isDraggable: true,
@@ -32,45 +33,45 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       blockKey: "navbar-and-categories-block",
       layout: {
         x: 0,
-        y: 6,
+        y: 10,
         w: 4,
-        h: 4,
+        h: 10,
         isDraggable: true,
       },
     },
-    {
-      id: "flash-sale-block",
-      blockKey: "flash-sale-block",
-      layout: {
-        x: 0,
-        y: 20,
-        w: 4,
-        h: 4,
-        isDraggable: true,
-      },
-    },
-    {
-      id: "category-miniapp-block",
-      blockKey: "category-miniapp-block",
-      layout: {
-        x: 0,
-        y: 14,
-        w: 4,
-        h: 4,
-        isDraggable: true,
-      },
-    },
-    {
-      id: "follow-oa-block",
-      blockKey: "follow-oa-block",
-      layout: {
-        x: 0,
-        y: 18,
-        w: 4,
-        h: 2,
-        isDraggable: true,
-      },
-    },
+    // {
+    //   id: "flash-sale-block",
+    //   blockKey: "flash-sale-block",
+    //   layout: {
+    //     x: 0,
+    //     y: 20,
+    //     w: 4,
+    //     h: 4,
+    //     isDraggable: true,
+    //   },
+    // },
+    // {
+    //   id: "category-miniapp-block",
+    //   blockKey: "category-miniapp-block",
+    //   layout: {
+    //     x: 0,
+    //     y: 24,
+    //     w: 4,
+    //     h: 4,
+    //     isDraggable: true,
+    //   },
+    // },
+    // {
+    //   id: "follow-oa-block",
+    //   blockKey: "follow-oa-block",
+    //   layout: {
+    //     x: 0,
+    //     y: 18,
+    //     w: 4,
+    //     h: 2,
+    //     isDraggable: true,
+    //   },
+    // },
     {
       id: "second-popular-products-block",
       blockKey: "second-popular-products-block",
@@ -78,7 +79,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
         x: 0,
         y: 20,
         w: 4,
-        h: 4,
+        h: 8,
         isDraggable: true,
       },
     },
@@ -87,9 +88,9 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       blockKey: "second-bestseller-products-block",
       layout: {
         x: 0,
-        y: 24,
+        y: 28,
         w: 4,
-        h: 4,
+        h: 8,
         isDraggable: true,
       },
     },
@@ -98,7 +99,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       blockKey: "second-collections-block",
       layout: {
         x: 0,
-        y: 28,
+        y: 32,
         w: 4,
         h: 4,
         isDraggable: true,
@@ -109,7 +110,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       blockKey: "new-products-block",
       layout: {
         x: 0,
-        y: 32,
+        y: 36,
         w: 4,
         h: 4,
         isDraggable: true,
@@ -120,7 +121,7 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       blockKey: "view-by-user-block",
       layout: {
         x: 0,
-        y: 36,
+        y: 40,
         w: 4,
         h: 4,
         isDraggable: true,
@@ -168,9 +169,12 @@ export const BridgeLink: FC<BridgeLinkProps> = () => {
       // draggableHandle=".react-grid-item"
     >
       {data.map((item) => (
-        <div key={item.id}>
+        <div key={item.id} className="border border-black relative">
           {" "}
           {/* Added div wrapper to satisfy GridLayout's needs */}
+          <div className="drag-handle flex items-center justify-start absolute top-0 right-0 p-2 cursor-pointer">
+            <MdDragHandle size={20} /> {/* Example drag handle icon */}
+          </div>
           <RenderBlock blockKey={item.blockKey} />
         </div>
       ))}
