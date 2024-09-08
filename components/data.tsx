@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { Item, BridgeLinkProps } from "../type/block";
 import GridLayout from "react-grid-layout"; // Ensure correct import
 import { RenderBlock } from "./block"; // Ensure correct import
-import { MdDragHandle } from "react-icons/md";
+import { MdDragHandle, MdArrowUpward, MdArrowDownward } from "react-icons/md";
 
 export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
   const [data, setData] = useState<Item[]>([
@@ -152,6 +152,24 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
     );
   };
 
+  const moveItem = (id, direction) => {
+    const index = data.findIndex((item) => item.id === id);
+    if (index === -1) return;
+
+    // Determine the new index
+    const newIndex = direction === "up" ? index - 1 : index + 1;
+
+    // Check if the new index is valid
+    if (newIndex < 0 || newIndex >= data.length) return;
+
+    // Swap items
+    const updatedData = [...data];
+    const [movedItem] = updatedData.splice(index, 1);
+    updatedData.splice(newIndex, 0, movedItem);
+
+    setData(updatedData);
+  };
+
   return (
     <GridLayout
       className={`layout ${className}`}
@@ -176,6 +194,20 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
           <div className="ml-10">
             <RenderBlock blockKey={item.blockKey} />
           </div>
+          <button
+            className="absolute top-2 right-10 bg-transparent border-none cursor-pointer"
+            onClick={() => moveItem(item.id, "up")}
+            aria-label="Move up"
+          >
+            <MdArrowUpward size={20} className="text-blue-500" />
+          </button>
+          <button
+            className="absolute top-10 right-10 bg-transparent border-none cursor-pointer"
+            onClick={() => moveItem(item.id, "down")}
+            aria-label="Move down"
+          >
+            <MdArrowDownward size={20} className="text-blue-500" />
+          </button>
         </div>
       ))}
     </GridLayout>
