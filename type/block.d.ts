@@ -1,8 +1,7 @@
-import { classNames } from "classnames";
 export interface Block {
   key: string;
   name: string;
-  render: (children: any) => JSX.Element;
+  render: (tools: { up: () => void; down: () => void }) => JSX.Element;
 }
 
 interface Item {
@@ -29,6 +28,8 @@ interface BlockLayout {
 
 export interface RenderBlockProps {
   blockKey: string;
+  onUp: () => void;
+  onDown: () => void;
 }
 
 export interface BridgeLinkProps {

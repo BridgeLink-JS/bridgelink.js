@@ -1,8 +1,7 @@
 import React, { FC, useState } from "react";
 import { Item, BridgeLinkProps } from "../type/block";
-import GridLayout from "react-grid-layout"; // Ensure correct import
-import { RenderBlock } from "./block"; // Ensure correct import
-import { MdDragHandle, MdArrowUpward, MdArrowDownward } from "react-icons/md";
+import GridLayout from "react-grid-layout";
+import { RenderBlock } from "./block";
 
 export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
   const [data, setData] = useState<Item[]>([
@@ -35,7 +34,7 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
         x: 0,
         y: 10,
         w: 4,
-        h: 10,
+        h: 12,
         isDraggable: true,
       },
     },
@@ -77,7 +76,7 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
       blockKey: "second-popular-products-block",
       layout: {
         x: 0,
-        y: 20,
+        y: 22,
         w: 4,
         h: 8,
         isDraggable: true,
@@ -88,7 +87,7 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
       blockKey: "second-bestseller-products-block",
       layout: {
         x: 0,
-        y: 28,
+        y: 30,
         w: 4,
         h: 8,
         isDraggable: true,
@@ -152,21 +151,16 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
     );
   };
 
-  const moveItem = (id, direction) => {
+  const moveItem = (id: string, direction: "up" | "down") => {
     const index = data.findIndex((item) => item.id === id);
     if (index === -1) return;
 
-    // Determine the new index
     const newIndex = direction === "up" ? index - 1 : index + 1;
-
-    // Check if the new index is valid
     if (newIndex < 0 || newIndex >= data.length) return;
 
-    // Swap items
     const updatedData = [...data];
     const [movedItem] = updatedData.splice(index, 1);
     updatedData.splice(newIndex, 0, movedItem);
-
     setData(updatedData);
   };
 
@@ -181,33 +175,23 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
         i: item.id,
       }))}
       compactType={"vertical"}
-      isResizable={false}
-      onDragStop={onDragStop}
-      isDraggable={true}
+      // isResizable={false}
+      // onDragStop={onDragStop}
+      // isDraggable={true}
     >
       {data.map((item) => (
-        <div key={item.id} className="border border-black relative">
-          <MdDragHandle
-            size={20}
-            className="absolute left-[-0.75rem] top-1/2 transform -translate-y-1/2 cursor-pointer"
-          />
+        <div key={item.id} className="border border-black">
           <div className="ml-10">
-            <RenderBlock blockKey={item.blockKey} />
+            <RenderBlock
+              blockKey={item.blockKey}
+              onUp={() => {
+                moveItem(item.id, "up");
+              }}
+              onDown={() => {
+                moveItem(item.id, "down");
+              }}
+            />
           </div>
-          <button
-            className="absolute top-2 right-10 bg-transparent border-none cursor-pointer"
-            onClick={() => moveItem(item.id, "up")}
-            aria-label="Move up"
-          >
-            <MdArrowUpward size={20} className="text-blue-500" />
-          </button>
-          <button
-            className="absolute top-10 right-10 bg-transparent border-none cursor-pointer"
-            onClick={() => moveItem(item.id, "down")}
-            aria-label="Move down"
-          >
-            <MdArrowDownward size={20} className="text-blue-500" />
-          </button>
         </div>
       ))}
     </GridLayout>

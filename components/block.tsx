@@ -15,7 +15,11 @@ export const addBlock = (block: Block) => {
   });
 };
 
-export const RenderBlock: FC<RenderBlockProps> = ({ blockKey }) => {
+export const RenderBlock: FC<RenderBlockProps> = ({
+  blockKey,
+  onDown,
+  onUp,
+}) => {
   const block = blocks.find((block) => block.key === blockKey);
 
   if (!block) {
@@ -23,5 +27,14 @@ export const RenderBlock: FC<RenderBlockProps> = ({ blockKey }) => {
     return null;
   }
 
-  return <>{block.render ? block.render(blockKey) : null}</>;
+  return (
+    <>
+      {block.render
+        ? block.render({
+            up: onUp,
+            down: onDown,
+          })
+        : null}
+    </>
+  );
 };
