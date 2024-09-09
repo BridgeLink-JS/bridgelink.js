@@ -169,12 +169,10 @@ export const BridgeLink: FC<BridgeLinkProps> = ({ className }) => {
     >
       {data.map((item) => (
         <div key={item.id} className="border border-black relative">
-          {/* Drag handle centered vertically */}
           <MdDragHandle
             size={20}
             className="absolute left-[-0.75rem] top-1/2 transform -translate-y-1/2 cursor-pointer"
           />
-          {/* Main content with margin */}
           <div className="ml-10">
             <RenderBlock blockKey={item.blockKey} />
           </div>
