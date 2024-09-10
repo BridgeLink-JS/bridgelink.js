@@ -33,5 +33,7 @@ export interface RenderBlockProps {
 }
 
 export interface BridgeLinkProps {
+  value: Array<Item>;
+  onChange: (value: Array<Item>) => void;
   className: string;
 }
